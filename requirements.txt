@@ -1,0 +1,4 @@
+telethon
+psutil
+pillow
+wmi
