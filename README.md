@@ -1,6 +1,6 @@
 # 📡 TeleSysControl
 
-TeleSysControl is a system control and management project designed to be used from a **Windows laptop** through a Telegram Bot. It allows users to interact with system functions, manage files.
+TeleSysControl is a system control and management project designed to use **Windows laptop** through a Telegram Bot
 
 ---
 
@@ -20,3 +20,7 @@ TeleSysControl is a system control and management project designed to be used fr
 - Administrator access (recommended)
 
 ---
+
+## LICENSE
+
+This project is licensed under the [MIT License](LICENSE).
