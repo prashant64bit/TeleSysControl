@@ -1,32 +1,35 @@
 import asyncio
-import os
-import sys
-import subprocess
 from pathlib import Path
-from telethon import TelegramClient, events, Button
+from telethon import events, Button
 from bot import client
-from config import apiID, apiHASH, botToken, ownerId
+from config import botToken
 
-def load_plugins():
-    plugin_dir = Path(__file__).parent / "plugins"
-    for file in plugin_dir.glob("*.py"):
-        if file.name == "__init__.py":
-            continue
-        module_name = f"plugins.{file.stem}"
-        __import__(module_name)
-
-@client.on(events.NewMessage(pattern="/start"))
-async def start_handler(event):
-    if event.sender_id != ownerId:
-        return
-    await event.reply("Control Panel", buttons=[
+def getMainMenuButtons():
+    return [
         [Button.inline("System Status", b"stats")],
         [Button.inline("Power Control", b"power")],
-        [Button.inline("Screenshot", b"screenshot")]
-    ])
+        [Button.inline("Screenshot", b"screenshot")],
+        [Button.inline("Volume Control", b"volume")]
+    ]
+
+@client.on(events.NewMessage(pattern="/start"))
+async def startHandler(event):
+    await event.reply("Control Panel", buttons=getMainMenuButtons())
+
+@client.on(events.CallbackQuery(data=b"back"))
+async def backToMain(event):
+    await event.edit("Control Panel", buttons=getMainMenuButtons())
+
+def loadPlugins():
+    pluginDir = Path(__file__).parent / "plugins"
+    for file in pluginDir.glob("*.py"):
+        if file.name == "__init__.py":
+            continue
+        moduleName = f"plugins.{file.stem}"
+        __import__(moduleName)
 
 async def main():
-    load_plugins()
+    loadPlugins()
     await client.start(bot_token=botToken)
     print("Bot started.")
     await client.run_until_disconnected()
