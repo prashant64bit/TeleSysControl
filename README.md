@@ -1,26 +1,44 @@
-# 📡 TeleSysControl
+# TeleSysControl
 
-TeleSysControl is a system control and management project designed to use **Windows laptop** through a Telegram Bot
-
----
-
-## 🚀 Features
-
-- Use via **Windows Command Prompt (CMD)**
-- System control and monitoring
-- File management support
-- Lightweight and easy to use
-- Works directly from a Windows laptop
+TeleSysControl is a Windows system management project that uses a Telegram bot to remotely manage essential system features from anywhere.
 
 ---
 
-## 🖥️ Requirements
+## Features
 
-- Windows 10 / 11
-- Administrator access (recommended)
+- **System Monitoring**
+  - CPU, Ram, GPU, Drive information  
+  - Number of running processes  
+  - Battery percentage  
+  - Charging status  
+
+- **Screenshot**
+  - Capture the current screen  
+
+- **Volume Control**
+  - Increase volume  
+  - Decrease volume  
+  - Mute  
+  - Set maximum volume  
+
+- **Power Control**
+  - Shutdown  
+  - Sleep  
+  - Hibernate  
+  - Restart  
+
+- **Auto Connect**
+  - Automatically connects to the Telegram bot when the laptop is connected to the internet
 
 ---
 
-## LICENSE
+## Requirements
+
+- Windows 10 or Windows 11  
+- Administrator access (recommended for full functionality)
+
+---
+
+## License
 
 This project is licensed under the [MIT License](LICENSE).
