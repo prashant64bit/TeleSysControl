@@ -1,4 +1,5 @@
 import asyncio
+import time
 from pathlib import Path
 from telethon import events, Button
 from bot import client
@@ -30,9 +31,15 @@ def loadPlugins():
 
 async def main():
     loadPlugins()
-    await client.start(bot_token=botToken)
-    print("Bot started.")
-    await client.run_until_disconnected()
+    while True:
+        try:
+            await client.start(bot_token=botToken)
+            print(f"[{time.strftime('%H:%M:%S')}] Bot started.")
+            await client.run_until_disconnected()
+        except Exception as e:
+            print(f"[{time.strftime('%H:%M:%S')}] Error: {type(e).__name__}: {e}")
+            print("Reconnecting in 7s...")
+            await asyncio.sleep(7)
 
 if __name__ == "__main__":
     try:
