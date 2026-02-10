@@ -2,19 +2,21 @@ import os
 from telethon import events, Button
 from bot import client
 from config import ownerId
+from utils import safeEdit
 
 @client.on(events.CallbackQuery(data=b"power"))
 async def showPowerMenu(event):
     if event.sender_id != ownerId:
         await event.answer("Access denied", alert=True)
         return
-    await event.edit("Power Control", buttons=[
+    buttons = [
         [Button.inline("Sleep", b"sleep")],
         [Button.inline("Shutdown", b"shutdown")],
         [Button.inline("Restart", b"restart")],
         [Button.inline("Hibernate", b"hibernate")],
         [Button.inline("Back", b"back")]
-    ])
+    ]
+    await safeEdit(event, "Power Control", buttons)
 
 @client.on(events.CallbackQuery(data=b"sleep"))
 async def doSleep(event):

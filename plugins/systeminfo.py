@@ -4,6 +4,7 @@ import re
 from telethon import events, Button
 from bot import client
 from config import ownerId
+from utils import safeEdit
 
 def escapeMd(text):
     if not text:
@@ -104,12 +105,5 @@ async def showSystemInfo(event):
     if event.sender_id != ownerId:
         await event.answer("Access denied", alert=True)
         return
-    try:
-        text = buildSystemInfo()
-        await event.edit(text, parse_mode='md', buttons=getStatsButtons())
-    except Exception as e:
-        if "MessageNotModifiedError" in str(e):
-            await event.answer()
-        else:
-            print("System info error:", str(e))
-            await event.answer("Error refreshing", alert=True)
+    text = buildSystemInfo()
+    await safeEdit(event, text, getStatsButtons())

@@ -2,6 +2,7 @@ import subprocess
 from telethon import events, Button
 from bot import client
 from config import ownerId
+from utils import safeEdit
 
 def sendVolumeKeys(keyCode, count=1):
     try:
@@ -23,8 +24,8 @@ def sendVolumeKeys(keyCode, count=1):
 
 def getVolumeButtons():
     return [
-        [Button.inline("−", b"volDown"),Button.inline("+", b"volUp")],
-        [Button.inline("Min", b"volMin"),Button.inline("Max", b"volMax")],
+        [Button.inline("−", b"volDown"), Button.inline("+", b"volUp")],
+        [Button.inline("Min", b"volMin"), Button.inline("Max", b"volMax")],
         [Button.inline("Back", b"back")]
     ]
 
@@ -33,7 +34,7 @@ async def showVolumeMenu(event):
     if event.sender_id != ownerId:
         await event.answer("Access denied", alert=True)
         return
-    await event.edit("Volume Control", buttons=getVolumeButtons())
+    await safeEdit(event, "Volume Control", getVolumeButtons())
 
 @client.on(events.CallbackQuery(data=b"volUp"))
 async def changeVolUp(event):
