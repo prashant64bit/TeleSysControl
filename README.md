@@ -6,29 +6,18 @@ TeleSysControl is a Windows system management project that uses a Telegram bot t
 
 ## Features
 
-- **System Monitoring**
-  - CPU, Ram, GPU, Drive information  
-  - Number of running processes  
-  - Battery percentage  
-  - Charging status  
+<div align="center">
 
-- **Screenshot**
-  - Capture the current screen  
+| Action |
+|--------|
+| System Monitoring (CPU, RAM, GPU, drives, processes, battery, charging status) |
+| Show System Uptime |
+| Capture Screenshot |
+| Volume Control (increase, decrease, mute, max) |
+| Power Control (shutdown, sleep, hibernate, restart) |
+| Auto Connect to Telegram bot on internet availability |
 
-- **Volume Control**
-  - Increase volume  
-  - Decrease volume  
-  - Mute  
-  - Set maximum volume  
-
-- **Power Control**
-  - Shutdown  
-  - Sleep  
-  - Hibernate  
-  - Restart  
-
-- **Auto Connect**
-  - Automatically connects to the Telegram bot when the laptop is connected to the internet
+</div>
 
 ---
 
