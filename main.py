@@ -9,6 +9,7 @@ def getMainMenuButtons():
     return [
         [Button.inline("System Status", b"stats")],
         [Button.inline("Uptime", b"uptime")],
+        [Button.inline("Speed Test", b"speedtest")],
         [Button.inline("Power Control", b"power")],
         [Button.inline("Screenshot", b"screenshot")],
         [Button.inline("Volume Control", b"volume")]
