@@ -1,6 +1,7 @@
 import platform
 import psutil
 import re
+import wmi
 from telethon import events, Button
 from bot import client
 from config import ownerId
@@ -12,6 +13,17 @@ def escapeMd(text):
     text = str(text)
     chars = r'([_*[\]~`>#+|=])'
     return re.sub(chars, r'\\\1', text)
+
+def getLaptopInfo():
+    try:
+        c = wmi.WMI()
+        cs = c.Win32_ComputerSystem()[0]
+        manufacturer = cs.Manufacturer.strip() or "Unknown"
+        model = cs.Model.strip() or "Unknown"
+        pcName = cs.Name.strip() or "Unknown"
+        return manufacturer, model, pcName
+    except:
+        return "Unknown", "Unknown", "Unknown"
 
 def getBatteryInfo():
     battery = psutil.sensors_battery()
@@ -29,11 +41,14 @@ def getBatteryInfo():
 
 def buildSystemInfo():
     lines = ["**System Information**", ""]
-    lines.append(f"**Hostname:** {escapeMd(platform.node())}")
+
+    manufacturer, model, pcName = getLaptopInfo()
+    lines.append(f"**Manufacturer:** {escapeMd(manufacturer)}")
+    lines.append(f"**Model:** {escapeMd(model)}")
+    lines.append(f"**Computer Name:** {escapeMd(pcName)}")
 
     cpu = "Unknown"
     try:
-        import wmi
         cpu = wmi.WMI().Win32_Processor()[0].Name.strip()
     except:
         cpu = platform.processor() or "Unknown"
@@ -76,7 +91,6 @@ def buildSystemInfo():
 
     gpus = []
     try:
-        import wmi
         for v in wmi.WMI().Win32_VideoController():
             name = v.Name.strip()
             if name and "microsoft" not in name.lower() and "basic" not in name.lower():
