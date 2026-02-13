@@ -37,7 +37,6 @@ def buildStartupMessage():
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     manufacturer, model, pcName = getLaptopInfo()
     lines = ["**Laptop Started**", ""]
-    lines.append(f"**Time:** {now}")
     lines.append(f"**Manufacturer:** {escapeMd(manufacturer)}")
     lines.append(f"**Model:** {escapeMd(model)}")
     lines.append(f"**Computer Name:** {escapeMd(pcName)}")
