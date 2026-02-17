@@ -1,3 +1,11 @@
+import sys
+import os
+
+if sys.stdout is None:
+    sys.stdout = open(os.devnull, "w")
+if sys.stderr is None:
+    sys.stderr = open(os.devnull, "w")
+
 import speedtest
 from telethon import events, Button
 from bot import client
