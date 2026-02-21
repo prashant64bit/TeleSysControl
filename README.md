@@ -30,13 +30,38 @@ TeleSysControl is a Windows system management project that uses a Telegram bot t
 
 ---
 
-## License
+## Installation
 
-This project is licensed under the [MIT License](LICENSE).
+1. Clone the repository:
+
+```bash
+git clone https://github.com/Prashant64bit/TeleSysControl.git
+cd TeleSysControl
+```
+
+2. Install required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Configure the Project
+
+Edit `config.py` and update your:
+
+- `apiID`
+- `apiHASH`
+- `botToken`
+- `ownerId`
+
+### Run the Application
+
+```bash
+python main.py
+```
 
 ---
 
-Made by **Prashant Thakur**  
-GitHub: [https://github.com/prashant64bit](https://github.com/prashant64bit)  
-Portfolio: [https://PrashantThakur.is-a.dev](https://PrashantThakur.is-a.dev)  
-LinkedIn: [https://linkedin.com/in/prashant64bit](https://linkedin.com/in/prashant64bit)
+## License
+
+This project is licensed under the [MIT License](LICENSE).
